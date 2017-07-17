@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>毕业倒计时</title>
+    <style>
+        #box{height:300px;font-size:40px;color:#cccbcb;text-align:center;
+        background:url(imgs/bg.png);background-position:center;background-repeat:no-repeat;
+        padding-top:150px;box-sizing: border-box;position: relative;}
+        p{position: absolute;left: 50%;margin-left: -186px;margin-top:-60px}
+        span{line-height: 20px;}
+    </style>
+    <script src="js/tools.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+
+		function CountTime(year,month,day){
+			var now = +new Date();
+			var endDate = +new Date(year,month-1,day)
+//			enddate = enddate.getTime()
+			var countTime = endDate - now;
+			var countSecond = parseInt(countTime/1000);
+//			console.log(countSecond)
+			var day=toTrible(Math.floor(countSecond/(60*60*24))); 
+			var hour=toDouble(Math.floor((countSecond-day*24*60*60)/3600)); 
+			var minute=toDouble(Math.floor((countSecond-day*24*60*60-hour*3600)/60)); 
+			var second=toDouble(Math.floor(countSecond-day*24*60*60-hour*3600-minute*60)); 
+			var time = "" + day + hour + minute + second;
+
+			for(var i = 0;i < time.length;i++){
+				$(".time")[i].src = "imgs/"+time[i]+".png";
+			}
+		}	
+			
+			
+		
+
+		function toTrible(num) {
+            if (num < 100 && num >=10) {
+                return '0' + num;
+            }
+            else if (num < 10) {
+                return '00' + num;
+            }
+            else {
+                return num;
+            }
+        }
+		
+		function toDouble(num) {
+            if (num < 10) {
+                return '0' + num;
+            }
+            else {
+                return num;
+            }
+        }
+		
+    </script>
+</head>
+<body>
+    <div id="box">
+    	<p>距离毕业还有
+    	<img class="time" src="imgs/0.png" />
+    	<img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+		<span>天</span></p>
+    	
+        <img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+        <img src="imgs/sign.png" />
+        <img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+        <img src="imgs/sign.png" />
+        <img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+    </div>
+    <script type="text/javascript">
+    	setInterval(function (){
+    		CountTime(2017,7,15)
+    	},1000);
+    </script>
+    
+</body>
+</html>

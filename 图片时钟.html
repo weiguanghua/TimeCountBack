@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>图片时钟</title>
+    <style>
+        #box{height:300px;font-size:40px;color:#cccbcb;text-align:center;
+        background:url(imgs/bg.png);background-position:center;background-repeat:no-repeat;
+        padding-top:150px;box-sizing: border-box;position: relative;}
+        p{position: absolute;left: 50%;margin-left: -186px;margin-top:-60px}
+        span{line-height: 20px;}
+    </style>
+    <script src="js/tools.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+
+		function CountTime(){
+			var now = new Date();
+
+			var hour=toDouble(now.getHours()); 
+			var minute=toDouble(now.getMinutes()); 
+			var second=toDouble(now.getSeconds()); 
+			var time = "" + hour + minute + second;
+
+			for(var i = 0;i < time.length;i++){
+				$(".time")[i].src = "imgs/"+time[i]+".png";
+			}
+		}	
+			
+			
+		
+
+
+		function toDouble(num) {
+            if (num < 10) {
+                return '0' + num;
+            }
+            else {
+                return num;
+            }
+        }
+		
+    </script>
+</head>
+<body>
+    <div id="box">
+    	
+        <img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+        <img src="imgs/sign.png" />
+        <img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+        <img src="imgs/sign.png" />
+        <img class="time" src="imgs/0.png" />
+        <img class="time" src="imgs/0.png" />
+    </div>
+    <script type="text/javascript">
+    	setInterval(
+    		CountTime
+    	,1000);
+    </script>
+    
+</body>
+</html>
